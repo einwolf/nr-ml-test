@@ -73,11 +73,16 @@ def train2():
     Train model with PPO and automatic stopping callback
     """
     make_output_dirs()
-    environment_name = 'CartPole-v0'
+    environment_name = "CartPole-v0"
 
     env = gym.make(environment_name)
     env = DummyVecEnv([lambda: env])
-    model = PPO('MlpPolicy', env, verbose = 1, tensorboard_log=log_path)
+
+    model = PPO("MlpPolicy", env, verbose = 1, tensorboard_log=log_path)
+
+    # Custom network architecture (4 layers each 128 neurons) 
+    # net_arch=[dict(pi=[128, 128, 128, 128], vf=[128, 128, 128, 128])]
+    # model = PPO("MlpPolicy", env, verbose = 1, policy_kwargs={"net_arch": net_arch})
 
     stop_callback = StopTrainingOnRewardThreshold(reward_threshold=190, verbose=1)
     eval_callback = EvalCallback(env, 
