@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "breakout"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+stable-baselines3 = {extras = ["extra"], version = "^1.6.0"}
+gym = {version = "0.21.0", extras = ["atari", "accept-rom-license"]}
+ale-py = "0.7.4"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+breakout-train = "breakout.main:train"
+breakout-eval = "breakout.main:eval"
+breakout-test = "breakout.main:test"
