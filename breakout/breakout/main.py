@@ -79,7 +79,7 @@ def eval():
     env = VecFrameStack(env, n_stack=4)
 
     print(f"Load best model {a2c_model_path}")
-    model = A2C.load("saved_models/a2c_model_breakout/best_model.zip", env=env)
+    model = A2C.load(f"{a2c_model_path}/best_model.zip", env=env)
 
     mean_reward, std_reward = evaluate_policy(model, env, n_eval_episodes=10, render=True)
     print(f"mean_reward per episode = {mean_reward}")
