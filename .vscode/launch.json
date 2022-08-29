@@ -1,0 +1,58 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Python: lander env_test",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "autoReload": {
+                "enable": true
+            },
+            "cwd": "${workspaceFolder}/lander",
+            "program": "${workspaceFolder}/lander/lander/env_test.py",
+            // "module": "lander.main:train",
+        },
+        {
+            "name": "Python: lander train",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "autoReload": {
+                "enable": true
+            },
+            "cwd": "${workspaceFolder}/lander",
+            "program": "${workspaceFolder}/lander/lander/train.py",
+            // "module": "lander.main:train",
+            "args": [
+                "--total_timesteps", "40000",
+            ]
+        },
+        {
+            "name": "Python: lander eval",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "autoReload": {
+                "enable": true
+            },
+            "cwd": "${workspaceFolder}/lander",
+            "program": "${workspaceFolder}/lander/lander/eval.py",
+            // "module": "lander.main:train",
+        },
+    ]
+}
