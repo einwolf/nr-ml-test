@@ -39,6 +39,7 @@
             // "module": "lander.main:train",
             "args": [
                 "--total_timesteps", "40000",
+                "--save_model", "saved_models/dqn/last_train.zip",
             ]
         },
         {

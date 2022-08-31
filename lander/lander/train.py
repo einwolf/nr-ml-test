@@ -1,5 +1,6 @@
 import argparse
 import os
+from pathlib import Path
 
 import gym
 from stable_baselines3 import A2C, DQN
@@ -34,6 +35,8 @@ def main():
 
     print(f"{args.total_timesteps=}")
     print(f"{args.reward_threshold=}")
+    print(f"{args.load_model=}")
+    print(f"{args.save_model=}")
 
     # Initialize
     make_output_dirs()
@@ -71,16 +74,19 @@ def main():
     callbacks = []
     callbacks.append(checkpoint_eval)
     callbacks.append(stop_no_improvement_eval)
-    if args.reward_threshold:
+    if args.reward_threshold > 0:
         callbacks.append(stop_reward_eval)
     
     callback_list = CallbackList(callbacks)
 
     # Train
+    if args.load_model:
+        model.load(path=args.load_model, env=env)
+
     model.learn(total_timesteps=args.total_timesteps, callback=callback_list)
 
-    # print(f"Save {a2c_model_path}")
-    # model.save(a2c_model_path)
+    if args.save_model:
+        model.save(path=args.save_model)
 
 
 def parse_cmd_line():
@@ -90,6 +96,10 @@ def parse_cmd_line():
                     help="Maximum number of training time steps")
     parser.add_argument("--reward_threshold", required=False, type=int, default=0,
                     help="Stop when reward reaches this value")
+    parser.add_argument("--load_model", required=False, type=Path, default=False,
+                    help="Continue training from this model file")
+    parser.add_argument("--save_model", required=False, type=Path, default=False,
+                    help="Save model to this file at end of training")
 
     args = parser.parse_args()
     return args
