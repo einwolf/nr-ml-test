@@ -13,7 +13,7 @@ from stable_baselines3.common.vec_env import (DummyVecEnv, VecFrameStack,
 environment_name = "LunarLander-v2"
 
 log_path = "tensorboard_logs"
-a2c_model_path = os.path.join("saved_models", "dqn_model_breakout")
+dqn_model_path = os.path.join("saved_models", "dqn")
 
 def make_output_dirs():
     os.makedirs(log_path, exist_ok=True)
@@ -26,11 +26,12 @@ def main():
     """
     make_output_dirs()
 
-    env = make_atari_env(environment_name, n_envs=4, seed=0)
-    env = VecFrameStack(env, n_stack=4)
+    env = gym.make(environment_name)
+    env = Monitor(env)
+    env = DummyVecEnv([lambda: env])
 
-    print(f"Load best model {a2c_model_path}")
-    model = A2C.load(f"{a2c_model_path}/best_model.zip", env=env)
+    print(f"Load best model {dqn_model_path}")
+    model = DQN.load(f"{dqn_model_path}/best_model.zip", env=env)
 
     mean_reward, std_reward = evaluate_policy(model, env, n_eval_episodes=10, render=True)
     print(f"mean_reward per episode = {mean_reward}")

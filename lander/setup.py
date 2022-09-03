@@ -180,7 +180,7 @@ setup(
         "console_scripts": [
             "lander-env_test=lander.env_test:main",
             "lander-train=lander.train:main",
-            "lander-eval=lander.eval:train",
+            "lander-eval=lander.eval:main",
         ],
     },
 
