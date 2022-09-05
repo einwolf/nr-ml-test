@@ -1,0 +1,15 @@
+ale-py==0.7.4
+box2d-py==2.3.5
+gym==0.21.0
+matplotlib==3.5.2
+numpy==1.23.1
+oauthlib==3.2.0
+opencv-python==4.6.0.66
+pandas==1.4.3
+Pillow==9.2.0
+pyglet==1.5.26
+stable-baselines3==1.6.0
+tensorboard==2.10.0
+torch==1.12.1+cu116
+torchaudio==0.12.1+cu116
+torchvision==0.13.1+cu116
